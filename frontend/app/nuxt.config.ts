@@ -1,5 +1,17 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  devServer: {
+    port: 4351,
+  },
+
+  nitro: {
+    serveStatic: true,
+  },
+
+  srcDir: 'src/',
+  ssr: false,
+  components: true,
+
   compatibilityDate: '2025-05-15',
-  devtools: { enabled: true }
+  devtools: { enabled: true },
 })

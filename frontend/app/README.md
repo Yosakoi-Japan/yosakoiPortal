@@ -3,8 +3,8 @@
 ```
 $ cd frontend/app
 $ npm ci
-$ npm run deploy
+$ npm run dev
 ```
 
 ### 画面アクセス
- local環境：http://localhost:3000/
+ local環境：http://localhost:4351/
