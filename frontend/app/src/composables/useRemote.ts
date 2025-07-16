@@ -15,5 +15,18 @@ export function useRemote() {
     }
   };
 
-  return { events, fetchEvents };
+  const fetchEventById = async (id: string): Promise<Event | null> => {
+    try {
+      const { data, error } = await useFetch<Event>(`/api/events/${id}`);
+      if (error.value) {
+        throw error.value;
+      }
+      return data.value;
+    } catch (e) {
+      console.error("Failed to fetch event:", e);
+      return null;
+    }
+  };
+
+  return { events, fetchEvents, fetchEventById };
 }
