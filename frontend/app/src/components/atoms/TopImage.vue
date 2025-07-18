@@ -14,10 +14,10 @@
 
 <script setup lang="ts">
 interface Props {
-  imageUrl: string;
-  altText: string;
-  title: string;
-  subtitle: string;
+  imageUrl?: string;
+  altText?: string;
+  title?: string;
+  subtitle?: string;
 }
 
 withDefaults(defineProps<Props>(), {

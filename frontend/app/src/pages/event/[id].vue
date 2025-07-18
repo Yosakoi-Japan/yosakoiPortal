@@ -69,6 +69,19 @@
                 <h2 class="text-2xl font-bold mb-4">基本情報</h2>
                 <div class="space-y-4">
                   <div>
+                    <h3 class="font-semibold text-gray-700">
+                      公式ホームページ
+                    </h3>
+                    <a
+                      :href="event.officialWebsite"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="text-blue-600 hover:text-blue-800 underline"
+                    >
+                      <p class="text-gray-600">{{ event.officialWebsite }}</p>
+                    </a>
+                  </div>
+                  <div>
                     <h3 class="font-semibold text-gray-700">開催期間</h3>
                     <p class="text-gray-600">
                       {{ event?.startDate }}〜{{ event?.endDate }}
@@ -78,15 +91,9 @@
                     <h3 class="font-semibold text-gray-700">開催地</h3>
                     <p class="text-gray-600">{{ event?.area }}</p>
                   </div>
-                  <div>
+                  <div v-if="event?.teamCount">
                     <h3 class="font-semibold text-gray-700">参加チーム数</h3>
-                    <p class="text-gray-600">
-                      {{
-                        event?.teamCount
-                          ? `約${event.teamCount}チーム`
-                          : "約150チーム（予定）"
-                      }}
-                    </p>
+                    <p class="text-gray-600">約{{ event.teamCount }}チーム</p>
                   </div>
                 </div>
               </div>
@@ -95,22 +102,26 @@
               <div>
                 <h2 class="text-2xl font-bold mb-4">アクセス</h2>
                 <div class="space-y-4">
-                  <div>
+                  <div v-if="event?.nearestStation">
                     <h3 class="font-semibold text-gray-700">最寄り駅</h3>
-                    <p class="text-gray-600">
-                      {{ event?.nearestStation || "JR○○駅 徒歩10分" }}
-                    </p>
+                    <p class="text-gray-600">{{ event.nearestStation }}</p>
                   </div>
-                  <div>
+                  <div v-if="event?.parking">
                     <h3 class="font-semibold text-gray-700">駐車場</h3>
-                    <p class="text-gray-600">
-                      {{ event?.parking || "臨時駐車場あり（有料）" }}
-                    </p>
+                    <p class="text-gray-600">{{ event.parking }}</p>
                   </div>
-                  <div>
+                  <div v-if="event?.contact">
                     <h3 class="font-semibold text-gray-700">お問い合わせ</h3>
                     <p class="text-gray-600">
-                      {{ event?.contact || "実行委員会 TEL: 000-000-0000" }}
+                      {{ event.contact.organization }}
+                    </p>
+                    <p class="text-gray-600">
+                      <a
+                        :href="`tel:${event.contact.phoneNumber}`"
+                        class="text-blue-600 hover:text-blue-800"
+                      >
+                        TEL: {{ event.contact.phoneNumber }}
+                      </a>
                     </p>
                   </div>
                 </div>
@@ -124,8 +135,11 @@
                 <p class="text-gray-700 leading-relaxed">
                   {{ event?.description }}
                 </p>
-                <p class="text-gray-700 leading-relaxed mt-4">
-                  {{ event?.additionalInfo }}
+                <p
+                  v-if="event?.additionalInfo"
+                  class="text-gray-700 leading-relaxed mt-4"
+                >
+                  {{ event.additionalInfo }}
                 </p>
               </div>
             </div>
@@ -136,11 +150,48 @@
             >
               <h3 class="font-semibold text-yellow-800 mb-2">注意事項</h3>
               <ul class="text-yellow-700 space-y-1">
+                <li>・最新情報は公式ホームページをご確認ください</li>
                 <li>・天候により開催内容が変更される場合があります</li>
                 <li>・会場内での撮影について制限がある場合があります</li>
                 <li>・ゴミは各自でお持ち帰りください</li>
                 <li>・熱中症対策を十分に行ってください</li>
               </ul>
+            </div>
+
+            <!-- Google MAP -->
+            <div v-if="event?.latitude && event?.longitude" class="mt-8">
+              <h2 class="text-2xl font-bold mb-4">会場マップ</h2>
+              <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                <div class="p-4 bg-gray-50 border-b">
+                  <h3 class="font-semibold text-gray-700">
+                    {{ event?.venue || "会場" }}
+                  </h3>
+                </div>
+                <div class="h-96">
+                  <iframe
+                    :src="`https://maps.google.com/maps?q=${event.latitude},${event.longitude}&hl=ja&z=15&output=embed`"
+                    width="100%"
+                    height="100%"
+                    style="border: 0"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    class="w-full h-full"
+                  ></iframe>
+                </div>
+                <div class="p-4 bg-gray-50 border-t">
+                  <p class="text-sm text-gray-600">
+                    <a
+                      :href="`https://www.google.com/maps/search/?api=1&query=${event.latitude},${event.longitude}`"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="text-blue-600 hover:text-blue-800 underline"
+                    >
+                      Google マップで開く
+                    </a>
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -155,7 +206,7 @@
 import Header from "~/components/utils/Header.vue";
 import Footer from "~/components/utils/Footer.vue";
 import { useRemote } from "~/composables/useRemote";
-import type { Event } from "~/types/index";
+import type { EventDetail } from "~/types/index";
 
 const route = useRoute();
 const { fetchEventById } = useRemote();
@@ -164,7 +215,7 @@ const { fetchEventById } = useRemote();
 const eventId = route.params.id as string;
 
 // イベントデータを取得
-const event = ref<Event | null>(null);
+const event = ref<EventDetail | null>(null);
 const isLoading = ref(true);
 const error = ref<string | null>(null);
 

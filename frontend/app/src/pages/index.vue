@@ -1,8 +1,8 @@
 <template>
   <div class="min-h-screen bg-gray-50">
     <Header />
-    <!-- ヒーロー画像 -->
-    <HeroImage />
+    <!-- トップ画像 -->
+    <TopImage />
 
     <!-- メイン -->
     <main class="container mx-auto px-4 py-10">
@@ -37,7 +37,7 @@ import InputSection from "~/components/atoms/InputSection.vue";
 import Header from "~/components/utils/Header.vue";
 import Footer from "~/components/utils/Footer.vue";
 import EventCard from "~/components/atoms/EventCard.vue";
-import HeroImage from "~/components/atoms/HeroImage.vue";
+import TopImage from "~/components/atoms/TopImage.vue";
 import { useRemote } from "~/composables/useRemote";
 
 const { events, fetchEvents } = useRemote();
