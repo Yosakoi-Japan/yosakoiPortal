@@ -4,6 +4,55 @@
     <!-- トップ画像 -->
     <TopImage />
 
+    <!-- よさこいの楽しみ方紹介 -->
+    <section class="bg-gradient-to-br from-red-50 to-pink-50 py-16">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-12">
+              <span class="text-red-500">🎌</span> よさこいって何？
+            </h2>
+            <p class="text-lg md:text-xl text-gray-600 mb-8">
+              初めての方でも安心！よさこい祭りの魅力と楽しみ方をご紹介
+            </p>
+          </div>
+
+          <div class="text-center">
+            <div
+              class="inline-flex items-center bg-white rounded-full shadow-lg px-6 py-4 mb-6"
+            >
+              <span class="text-2xl mr-3">✨</span>
+              <span class="text-gray-700 font-medium"
+                >初心者の方も大歓迎！気軽に楽しめます</span
+              >
+            </div>
+            <div>
+              <NuxtLink
+                to="/guide"
+                class="inline-flex items-center bg-gradient-to-r from-red-500 to-pink-500 text-white px-8 py-4 rounded-full font-bold text-lg hover:from-red-600 hover:to-pink-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+              >
+                <span class="mr-2">📖</span>
+                詳しい楽しみ方を見る
+                <svg
+                  class="w-5 h-5 ml-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13 7l5 5m0 0l-5 5m5-5H6"
+                  />
+                </svg>
+              </NuxtLink>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- メイン -->
     <main class="container mx-auto px-4 py-10">
       <section class="mb-10">
