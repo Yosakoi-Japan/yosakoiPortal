@@ -30,4 +30,5 @@ export type EventDetail = {
   latitude?: number
   longitude?: number
   venue?: string
+  youtubeVideoId?: string
 }

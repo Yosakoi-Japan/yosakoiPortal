@@ -158,6 +158,38 @@
               </ul>
             </div>
 
+            <!-- YouTube動画 -->
+            <div v-if="event?.youtubeVideoId" class="mt-8">
+              <h2 class="text-2xl font-bold mb-4">動画で見る</h2>
+              <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                <div class="p-4 bg-gray-50 border-b">
+                  <h3 class="font-semibold text-gray-700">{{ event?.title }}の様子</h3>
+                </div>
+                <div class="relative aspect-video">
+                  <iframe
+                    :src="`https://www.youtube.com/embed/${event.youtubeVideoId}`"
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen
+                    class="w-full h-full"
+                  ></iframe>
+                </div>
+                <div class="p-4 bg-gray-50 border-t">
+                  <p class="text-sm text-gray-600">
+                    <a
+                      :href="`https://www.youtube.com/watch?v=${event.youtubeVideoId}`"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="text-red-600 hover:text-red-800 underline"
+                    >
+                      YouTubeで見る
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+
             <!-- Google MAP -->
             <div v-if="event?.latitude && event?.longitude" class="mt-8">
               <h2 class="text-2xl font-bold mb-4">会場マップ</h2>
