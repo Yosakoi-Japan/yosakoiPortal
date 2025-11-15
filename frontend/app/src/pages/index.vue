@@ -55,10 +55,6 @@
 
     <!-- メイン -->
     <main class="container mx-auto px-4 py-10">
-      <section class="mb-10">
-        <h2 class="text-xl font-bold mb-4">キーワード検索</h2>
-        <InputSection />
-      </section>
       <section>
         <h2 class="text-xl font-bold mb-4">よさこい祭り一覧</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -82,7 +78,6 @@
 </template>
 
 <script setup lang="ts">
-import InputSection from "~/components/atoms/InputSection.vue";
 import Header from "~/components/utils/Header.vue";
 import Footer from "~/components/utils/Footer.vue";
 import EventCard from "~/components/atoms/EventCard.vue";
