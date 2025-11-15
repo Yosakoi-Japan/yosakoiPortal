@@ -48,7 +48,8 @@ const eventsDetailData = [
     officialWebsite: "https://hitachinokuni-yosakoi.jp",
     venue: "常陸太田市民交流センター",
     latitude: 36.5386,
-    longitude: 140.5334
+    longitude: 140.5334,
+    youtubeVideoId: "qTlI2-CH8ps"
   },
   {
     id: "utsukushima-yosakoi",
@@ -68,7 +69,8 @@ const eventsDetailData = [
     officialWebsite: "https://utsukushima-yosakoi.jp",
     venue: "福島駅前広場",
     latitude: 37.7549,
-    longitude: 140.4610
+    longitude: 140.4610,
+    youtubeVideoId: "eW4_44fqkXw"
   },
   {
     id: "sendai-michinoku-yosakoi",
@@ -88,7 +90,8 @@ const eventsDetailData = [
     officialWebsite: "https://michinoku-yosakoi.jp",
     venue: "勾当台公園市民広場",
     latitude: 38.2683,
-    longitude: 140.8719
+    longitude: 140.8719,
+    youtubeVideoId: "wSs6ffKGcX4"
   }
 ]
 
