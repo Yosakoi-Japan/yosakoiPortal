@@ -84,7 +84,7 @@
                   <div>
                     <h3 class="font-semibold text-gray-700">開催期間</h3>
                     <p class="text-gray-600">
-                      {{ event?.startDate }}〜{{ event?.endDate }}
+                      {{ event.period || "未定" }}
                     </p>
                   </div>
                   <div>

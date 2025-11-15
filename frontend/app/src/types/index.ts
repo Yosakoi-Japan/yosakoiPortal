@@ -5,9 +5,8 @@ export type EventListItem = {
   id: string
   title: string
   area: string
-  startDate: string
-  endDate: string
   description: string
+  period?: string
 }
 
 // 詳細表示用のイベント型
@@ -15,9 +14,8 @@ export type EventDetail = {
   id: string
   title: string
   area: string
-  startDate: string
-  endDate: string
   description: string
+  period?: string
   teamCount?: number
   nearestStation?: string
   parking?: string
