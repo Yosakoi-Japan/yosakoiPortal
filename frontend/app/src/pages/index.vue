@@ -63,9 +63,8 @@
             :key="event.id"
             :title="event.title"
             :area="event.area"
-            :startDate="event.startDate"
-            :endDate="event.endDate"
             :description="event.description"
+            :period="event.period"
             @click="handleEventClick"
           />
         </div>
@@ -88,10 +87,9 @@ const { events, fetchEvents } = useRemote();
 
 const handleEventClick = (event: {
   title: string;
-  startDate: string;
-  endDate: string;
   area: string;
   description: string;
+  period?: string;
 }) => {
   // イベント一覧から該当するイベントを検索してIDを取得
   const eventData = events.value.find((e) => e.title === event.title);
