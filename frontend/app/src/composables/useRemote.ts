@@ -130,6 +130,7 @@ const parseCsvText = (csvText: string): EventDetail[] => {
     const officialWebsite = getValue(row, "officialWebsite");
     if (officialWebsite) {
       eventDetail.officialWebsite = officialWebsite;
+      
     }
     if (teamCount !== undefined) {
       eventDetail.teamCount = teamCount;
