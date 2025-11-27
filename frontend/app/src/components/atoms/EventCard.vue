@@ -57,7 +57,7 @@
         </span>
       </div>
 
-      <p class="mt-4 text-sm leading-relaxed text-gray-600 clamp-3">
+      <p class="mt-4 text-sm leading-relaxed text-gray-600 line-clamp-3">
         {{ description }}
       </p>
     </div>
@@ -118,7 +118,7 @@ const handleKeyDown = (event: KeyboardEvent) => {
 </script>
 
 <style scoped>
-.clamp-3 {
+.line-clamp-3 {
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
