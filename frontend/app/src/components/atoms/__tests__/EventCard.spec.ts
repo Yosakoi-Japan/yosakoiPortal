@@ -48,42 +48,43 @@ describe('EventCard', () => {
       expect(wrapper.emitted('click')?.[0]).toEqual([defaultProps])
     })
 
-    it('should call preventDefault when Enter key is pressed', () => {
+    it('should call preventDefault when Enter key is pressed', async () => {
       const wrapper = mount(EventCard, {
         props: defaultProps
       })
 
-      const preventDefault = vi.fn()
       const button = wrapper.find('[role="button"]')
+      const event = new KeyboardEvent('keydown', { 
+        key: 'Enter',
+        bubbles: true,
+        cancelable: true
+      })
+      const preventDefaultSpy = vi.spyOn(event, 'preventDefault')
       
-      button.element.dispatchEvent(
-        new KeyboardEvent('keydown', { 
-          key: 'Enter',
-          bubbles: true,
-          cancelable: true
-        })
-      )
+      button.element.dispatchEvent(event)
+      await wrapper.vm.$nextTick()
 
-      // Verify the event was emitted (which means preventDefault was called in handler)
+      expect(preventDefaultSpy).toHaveBeenCalled()
       expect(wrapper.emitted('click')).toBeTruthy()
     })
 
-    it('should call preventDefault when Space key is pressed', () => {
+    it('should call preventDefault when Space key is pressed', async () => {
       const wrapper = mount(EventCard, {
         props: defaultProps
       })
 
       const button = wrapper.find('[role="button"]')
+      const event = new KeyboardEvent('keydown', { 
+        key: ' ',
+        bubbles: true,
+        cancelable: true
+      })
+      const preventDefaultSpy = vi.spyOn(event, 'preventDefault')
       
-      button.element.dispatchEvent(
-        new KeyboardEvent('keydown', { 
-          key: ' ',
-          bubbles: true,
-          cancelable: true
-        })
-      )
+      button.element.dispatchEvent(event)
+      await wrapper.vm.$nextTick()
 
-      // Verify the event was emitted (which means preventDefault was called in handler)
+      expect(preventDefaultSpy).toHaveBeenCalled()
       expect(wrapper.emitted('click')).toBeTruthy()
     })
 
