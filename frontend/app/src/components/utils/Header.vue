@@ -11,6 +11,7 @@ type MenuItem = {
 const menuItems: MenuItem[] = [
   { label: "ホーム", to: "/" },
   { label: "楽しみ方", to: "/guide" },
+  { label: "お問い合わせ", to: "/contact" },
 ];
 
 const isMenuOpen = ref(false);
