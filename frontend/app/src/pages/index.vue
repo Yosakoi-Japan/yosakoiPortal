@@ -82,7 +82,7 @@ import Footer from "~/components/utils/Footer.vue";
 import EventCard from "~/components/atoms/EventCard.vue";
 import TopImage from "~/components/atoms/TopImage.vue";
 import { useRemote } from "~/composables/useRemote";
-import { SITE_NAME, SITE_URL, DEFAULT_DESCRIPTION } from "~/constants/seo";
+import { SITE_NAME, SITE_URL } from "~/constants/seo";
 
 const { events, fetchEvents } = useRemote();
 const route = useRoute();
