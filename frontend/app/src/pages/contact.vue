@@ -61,7 +61,7 @@ useHead(() => {
   const url = `${SITE_URL}${route.path}`;
   const pageTitle = "お問い合わせ";
   const description =
-    "Yosakoi Portalへのお問い合わせはメールで受け付けています。掲載依頼や取材のご相談などはこちらから。";
+    "Yosakoi Portalへのお問い合わせはメールで受け付けています。";
 
   return {
     title: pageTitle,
