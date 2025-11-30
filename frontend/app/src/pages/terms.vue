@@ -130,4 +130,28 @@
 <script setup lang="ts">
 import Header from "~/components/utils/Header.vue";
 import Footer from "~/components/utils/Footer.vue";
+import { SITE_NAME, SITE_URL } from "~/constants/seo";
+
+const route = useRoute();
+
+useHead(() => {
+  const url = `${SITE_URL}${route.path}`;
+  const pageTitle = "利用規約";
+  const description =
+    "Yosakoi Portalのご利用にあたってのルールや禁止事項、免責事項などを定めた利用規約です。";
+
+  return {
+    title: pageTitle,
+    meta: [
+      { name: "description", content: description },
+      { property: "og:title", content: `${pageTitle} | ${SITE_NAME}` },
+      { property: "og:description", content: description },
+      { property: "og:url", content: url },
+      { name: "twitter:card", content: "summary" },
+      { name: "twitter:title", content: `${pageTitle} | ${SITE_NAME}` },
+      { name: "twitter:description", content: description },
+    ],
+    link: [{ rel: "canonical", href: url }],
+  };
+});
 </script>
