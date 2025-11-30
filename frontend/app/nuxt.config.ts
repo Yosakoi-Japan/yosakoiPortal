@@ -9,7 +9,7 @@ export default defineNuxtConfig({
   },
 
   srcDir: 'src/',
-  ssr: false,
+  ssr: true,
   components: true,
   css: ['~/assets/css/main.css'],
   modules: ['@nuxtjs/tailwindcss'],
