@@ -82,8 +82,10 @@ import Footer from "~/components/utils/Footer.vue";
 import EventCard from "~/components/atoms/EventCard.vue";
 import TopImage from "~/components/atoms/TopImage.vue";
 import { useRemote } from "~/composables/useRemote";
+import { SITE_NAME, SITE_URL } from "~/constants/seo";
 
 const { events, fetchEvents } = useRemote();
+const route = useRoute();
 
 const handleEventClick = (event: {
   title: string;
@@ -100,5 +102,26 @@ const handleEventClick = (event: {
 
 onMounted(() => {
   fetchEvents();
+});
+
+useHead(() => {
+  const url = `${SITE_URL}${route.path}`;
+  const pageTitle = "全国のよさこい祭り情報";
+  const description =
+    "日本各地で開催される最新のよさこい祭りを一覧でチェック。開催日程や会場情報を探せます。";
+
+  return {
+    title: pageTitle,
+    meta: [
+      { name: "description", content: description },
+      { property: "og:title", content: `${pageTitle} | ${SITE_NAME}` },
+      { property: "og:description", content: description },
+      { property: "og:url", content: url },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: `${pageTitle} | ${SITE_NAME}` },
+      { name: "twitter:description", content: description },
+    ],
+    link: [{ rel: "canonical", href: url }],
+  };
 });
 </script>

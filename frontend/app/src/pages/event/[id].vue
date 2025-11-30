@@ -239,6 +239,7 @@ import Header from "~/components/utils/Header.vue";
 import Footer from "~/components/utils/Footer.vue";
 import { useRemote } from "~/composables/useRemote";
 import type { EventDetail } from "~/types/index";
+import { SITE_NAME, SITE_URL, DEFAULT_DESCRIPTION } from "~/constants/seo";
 
 const route = useRoute();
 const { fetchEventById } = useRemote();
@@ -267,5 +268,30 @@ onMounted(async () => {
   } finally {
     isLoading.value = false;
   }
+});
+
+useHead(() => {
+  const currentEvent = event.value;
+  const pageTitle = currentEvent
+    ? `${currentEvent.title}（${currentEvent.area}）のイベント詳細`
+    : "イベント詳細";
+  const description =
+    currentEvent?.description?.slice(0, 120) || DEFAULT_DESCRIPTION;
+  const url = `${SITE_URL}${route.path}`;
+
+  return {
+    title: pageTitle,
+    meta: [
+      { name: "description", content: description },
+      { property: "og:title", content: `${pageTitle} | ${SITE_NAME}` },
+      { property: "og:description", content: description },
+      { property: "og:url", content: url },
+      { property: "og:type", content: "article" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: `${pageTitle} | ${SITE_NAME}` },
+      { name: "twitter:description", content: description },
+    ],
+    link: [{ rel: "canonical", href: url }],
+  };
 });
 </script>
