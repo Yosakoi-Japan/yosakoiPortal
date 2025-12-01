@@ -30,7 +30,7 @@ export default defineNuxtConfig({
         { property: "og:site_name", content: "Yosakoi Portal" },
         { property: "og:type", content: "website" },
       ],
-      link: [{ rel: "icon", type: "image/svg+xml", href: "/favicon.svg" }],
+      link: [{ rel: "icon", type: "image/svg+xml", href: "/naruko.png" }],
     },
   },
 
