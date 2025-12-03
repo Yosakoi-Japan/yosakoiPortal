@@ -21,7 +21,7 @@ interface Props {
 }
 
 withDefaults(defineProps<Props>(), {
-  imageUrl: "https://i.ytimg.com/vi/wSs6ffKGcX4/maxresdefault.jpg",
+  imageUrl: "/top_image.png",
   altText: "よさこい祭りの様子",
   title: "熱く踊れ、日本を彩れ。",
   subtitle: "全国のよさこい祭り情報をお届けします",

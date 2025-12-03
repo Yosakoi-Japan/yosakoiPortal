@@ -33,7 +33,7 @@
             class="rounded-2xl overflow-hidden shadow-lg mb-12 max-w-4xl mx-auto"
           >
             <img
-              src="https://pbs.twimg.com/media/C7FccliVwAAhPsh.jpg"
+              src="/about_image.jpg"
               alt="よさこい祭りの踊り子たち"
               class="w-full h-64 md:h-80 object-cover"
             />
@@ -271,7 +271,7 @@
               </h3>
               <p class="text-gray-700">
                 A.
-                もちろんです！多くの方が一人で来場され、現地で演武を楽しんでいます！
+                もちろんです！多くの方が一人で来場され、現地で演舞を楽しんでいます！
               </p>
             </div>
 
