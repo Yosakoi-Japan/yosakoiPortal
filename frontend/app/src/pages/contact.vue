@@ -54,7 +54,7 @@ import Header from "~/components/utils/Header.vue";
 import Footer from "~/components/utils/Footer.vue";
 import { SITE_NAME, SITE_URL } from "~/constants/seo";
 
-const contactEmail = "contact@yosakoi-portal.jp";
+const contactEmail = "yosakoi.portal.contact@gmail.com";
 const route = useRoute();
 
 useHead(() => {
