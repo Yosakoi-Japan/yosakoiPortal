@@ -7,7 +7,9 @@
         class="w-full max-w-3xl rounded-3xl bg-white p-8 text-gray-900 shadow-2xl ring-1 ring-gray-100 md:p-10"
       >
         <p class="text-sm font-semibold text-pink-600">メールサポート</p>
-        <h1 class="mt-3 text-3xl font-bold tracking-tight md:text-4xl">
+        <h1
+          class="mt-3 text-center text-2xl font-bold leading-tight tracking-tight md:text-left md:text-4xl"
+        >
           お問い合わせメールアドレス
         </h1>
         <p class="mt-4 text-base text-gray-600 md:text-lg">
@@ -18,7 +20,9 @@
           class="mt-8 rounded-2xl bg-gradient-to-r from-red-50 to-pink-50 p-6"
         >
           <p class="text-sm text-gray-500">メールアドレス</p>
-          <p class="mt-2 text-2xl font-semibold text-red-600 md:text-3xl">
+          <p
+            class="mt-2 w-full break-all text-center text-xl font-semibold text-red-600 sm:text-2xl md:text-left md:text-3xl"
+          >
             {{ contactEmail }}
           </p>
         </div>
