@@ -128,6 +128,20 @@
               </div>
             </div>
 
+            <!-- 注意事項 -->
+            <div
+              class="mt-8 bg-yellow-50 border border-yellow-200 rounded-lg p-6"
+            >
+              <h3 class="font-semibold text-yellow-800 mb-2">注意事項</h3>
+              <ul class="text-yellow-700 space-y-1">
+                <li>・最新情報は公式ホームページをご確認ください</li>
+                <li>・天候により開催内容が変更される場合があります</li>
+                <li>・会場内での撮影について制限がある場合があります</li>
+                <li>・ゴミは各自でお持ち帰りください</li>
+                <li>・熱中症対策を十分に行ってください</li>
+              </ul>
+            </div>
+
             <!-- 詳細説明 -->
             <div class="mt-8">
               <h2 class="text-2xl font-bold mb-4">イベント詳細</h2>
@@ -142,20 +156,6 @@
                   {{ event.additionalInfo }}
                 </p>
               </div>
-            </div>
-
-            <!-- 注意事項 -->
-            <div
-              class="mt-8 bg-yellow-50 border border-yellow-200 rounded-lg p-6"
-            >
-              <h3 class="font-semibold text-yellow-800 mb-2">注意事項</h3>
-              <ul class="text-yellow-700 space-y-1">
-                <li>・最新情報は公式ホームページをご確認ください</li>
-                <li>・天候により開催内容が変更される場合があります</li>
-                <li>・会場内での撮影について制限がある場合があります</li>
-                <li>・ゴミは各自でお持ち帰りください</li>
-                <li>・熱中症対策を十分に行ってください</li>
-              </ul>
             </div>
 
             <!-- YouTube動画 -->
