@@ -8,10 +8,32 @@ export default defineNuxtConfig({
     serveStatic: true,
   },
 
-  srcDir: 'src/',
-  ssr: false,
+  srcDir: "src/",
+  ssr: true,
   components: true,
+  css: ["~/assets/css/main.css"],
+  modules: ["@nuxtjs/tailwindcss"],
 
-  compatibilityDate: '2025-05-15',
+  app: {
+    head: {
+      htmlAttrs: {
+        lang: "ja",
+      },
+      titleTemplate: "%s | Yosakoi Portal",
+      meta: [
+        {
+          name: "description",
+          content:
+            "Yosakoi Portalは全国のよさこいイベント情報をわかりやすく紹介する情報サイトです。開催日程や会場情報をまとめてチェックできます。",
+        },
+        { name: "format-detection", content: "telephone=no" },
+        { property: "og:site_name", content: "Yosakoi Portal" },
+        { property: "og:type", content: "website" },
+      ],
+      link: [{ rel: "icon", type: "image/svg+xml", href: "/naruko.png" }],
+    },
+  },
+
+  compatibilityDate: "2025-05-15",
   devtools: { enabled: true },
 })
