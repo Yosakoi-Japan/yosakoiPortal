@@ -26,6 +26,10 @@ export default defineNuxtConfig({
           content:
             "Yosakoi Portalは全国のよさこいイベント情報をわかりやすく紹介する情報サイトです。開催日程や会場情報をまとめてチェックできます。",
         },
+        {
+          name: "google-site-verification",
+          content: "N-zBPKgrZbA67mnumsEM0CTBbk5Ds6mwcjPOg2ddn4A",
+        },
         { name: "format-detection", content: "telephone=no" },
         { property: "og:site_name", content: "Yosakoi Portal" },
         { property: "og:type", content: "website" },
