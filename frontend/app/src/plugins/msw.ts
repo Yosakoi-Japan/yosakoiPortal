@@ -1,11 +1,10 @@
 export default defineNuxtPlugin(async () => {
-  if (import.meta.server) {
+  if (import.meta.server || !import.meta.dev) {
     return;
   }
 
   const { worker } = await import("~/mocks/browser");
 
-  // TODO:local環境でのみMSWを有効にする
   await worker.start({
     onUnhandledRequest: "bypass",
   });
