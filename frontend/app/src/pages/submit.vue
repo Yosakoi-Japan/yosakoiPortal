@@ -2,18 +2,35 @@
   <div class="min-h-screen bg-gray-50">
     <Header />
     <main class="container mx-auto max-w-4xl px-4 py-12">
-      <section
-        class="rounded-3xl bg-white p-8 text-gray-900 shadow-xl ring-1 ring-gray-100"
-      >
-        <h1 class="text-3xl font-bold text-gray-900 md:text-4xl">
-          よさこい祭り掲載のご相談
-        </h1>
-        <p class="mt-4 text-gray-600 leading-relaxed">
-          あなたの街のよさこい祭りをもっと多くの人に知ってもらいませんか？<br />
-          開催に込めた想い、見どころ、参加者が感じてほしいポイントなど自由に教えてください。<br />
-          いただいた情報は編集部で確認し、掲載の可否をご連絡せず判断する場合がありますが、<br />
-          できるだけ多くのお祭りを紹介していきたいと考えています！
-        </p>
+      <section class="space-y-10">
+        <div
+          class="rounded-3xl bg-white p-8 text-gray-900 shadow-xl ring-1 ring-gray-100"
+        >
+          <p class="text-sm font-semibold text-pink-600 mb-2">
+            掲載パートナー募集中
+          </p>
+          <h1 class="text-3xl font-bold text-gray-900 md:text-4xl">
+            あなたのよさこい祭りで、見る人の心を動かそう
+          </h1>
+          <p class="mt-4 text-gray-600 leading-relaxed">
+            「もっと多くの人に見てもらいたい」「地域を盛り上げたい」そんな想いをYosakoi
+            Portalに託してみませんか！？<br />
+            祭り誕生の背景や演舞のこだわり、参加者に届けたいメッセージを自由に記入してください。<br />
+            丁寧にチェックし、順次掲載や特集へのピックアップを進めていきます。
+          </p>
+        </div>
+
+        <div
+          class="flex flex-col gap-2 rounded-2xl bg-gray-100 p-5 text-sm text-gray-700 md:flex-row md:items-center md:justify-between"
+        >
+          <p>掲載内容の修正・削除をご希望の方はこちらからご連絡ください。</p>
+          <NuxtLink
+            to="/contact"
+            class="inline-flex items-center justify-center rounded-full bg-red-500 px-5 py-2 text-white font-semibold shadow hover:bg-red-600 transition"
+          >
+            掲載内容の修正・削除の依頼はこちら
+          </NuxtLink>
+        </div>
         <div class="mt-8">
           <div
             class="relative w-full overflow-hidden rounded-2xl border border-gray-200 shadow-inner"
