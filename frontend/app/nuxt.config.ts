@@ -13,6 +13,11 @@ export default defineNuxtConfig({
   components: true,
   css: ["~/assets/css/main.css"],
   modules: ["@nuxtjs/tailwindcss"],
+  runtimeConfig: {
+    public: {
+      gtagId: process.env.GA_MEASUREMENT_ID || "",
+    },
+  },
 
   app: {
     head: {
