@@ -15,7 +15,7 @@ export default defineNuxtConfig({
   modules: ["@nuxtjs/tailwindcss"],
   runtimeConfig: {
     public: {
-      gtagId: process.env.GA_MEASUREMENT_ID || "",
+      gtagId: process.env.GA_MEASUREMENT_ID,
     },
   },
 
