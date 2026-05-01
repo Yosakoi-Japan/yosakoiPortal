@@ -1,35 +1,35 @@
-# Specification Quality Checklist: Event Data Source Update
+# 仕様品質チェックリスト: イベントデータソース更新
 
-**Purpose**: Validate specification completeness and quality before proceeding to planning
-**Created**: 2026-05-01
-**Feature**: [spec.md](/Users/collie/develop/yosakoiPortal/specs/001-update-event-csv/spec.md)
+**目的**: planning に進む前に仕様の完成度と品質を確認する  
+**作成日**: 2026-05-01  
+**対象仕様**: [spec.md](/Users/collie/develop/yosakoiPortal/specs/001-update-event-csv/spec.md)
 
-## Content Quality
+## 内容品質
 
-- [x] No implementation details (languages, frameworks, APIs)
-- [x] Focused on user value and business needs
-- [x] Written for non-technical stakeholders
-- [x] All mandatory sections completed
+- [x] 実装詳細（言語、framework、API）に寄りすぎていない
+- [x] 利用者価値と業務要求に焦点が当たっている
+- [x] 非技術ステークホルダーにも読める書き方になっている
+- [x] 必須セクションがすべて埋まっている
 
-## Requirement Completeness
+## 要求の完全性
 
-- [x] No [NEEDS CLARIFICATION] markers remain
-- [x] Requirements are testable and unambiguous
-- [x] Success criteria are measurable
-- [x] Success criteria are technology-agnostic (no implementation details)
-- [x] All acceptance scenarios are defined
-- [x] Edge cases are identified
-- [x] Scope is clearly bounded
-- [x] Dependencies and assumptions identified
+- [x] `[NEEDS CLARIFICATION]` が残っていない
+- [x] 要求が検証可能で曖昧でない
+- [x] 成功条件が測定可能である
+- [x] 成功条件が技術非依存である
+- [x] 受け入れシナリオが定義されている
+- [x] エッジケースが洗い出されている
+- [x] スコープ境界が明確である
+- [x] 依存関係と前提が特定されている
 
-## Feature Readiness
+## 機能の準備状況
 
-- [x] All functional requirements have clear acceptance criteria
-- [x] User scenarios cover primary flows
-- [x] Feature meets measurable outcomes defined in Success Criteria
-- [x] No implementation details leak into specification
+- [x] すべての機能要求に明確な受け入れ条件がある
+- [x] ユーザーシナリオが主要導線をカバーしている
+- [x] 機能が Success Criteria の測定可能な結果に対応している
+- [x] 実装詳細が仕様へ漏れすぎていない
 
-## Notes
+## メモ
 
-- Validation completed in one iteration.
-- The specification keeps the data source change at the business level as an updated event dataset, while preserving the required `event_id` term because it is a user-visible URL contract.
+- 検証は 1 回で完了した。
+- データソース差し替えは業務要件として記述しつつ、`event_id` は利用者に見える URL 契約のため明示的に残している。
