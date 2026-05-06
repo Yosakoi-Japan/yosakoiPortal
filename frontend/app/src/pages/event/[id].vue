@@ -51,10 +51,24 @@
         >
           <!-- イベント画像 -->
           <div
-            class="h-64 md:h-96 bg-gradient-to-r from-red-400 to-pink-500 flex items-center justify-center"
+            class="relative h-64 md:h-96 flex items-center justify-center overflow-hidden"
           >
-            <div class="text-white text-center">
-              <h1 class="text-3xl md:text-5xl font-bold mb-2">
+            <img
+              v-if="event.imageUrl"
+              :src="event.imageUrl"
+              :alt="event.title"
+              class="absolute inset-0 h-full w-full object-cover"
+            />
+            <div
+              class="absolute inset-0"
+              :class="
+                event.imageUrl
+                  ? 'bg-black/35'
+                  : 'bg-gradient-to-r from-red-400 to-pink-500'
+              "
+            ></div>
+            <div class="relative px-6 text-center text-white">
+              <h1 class="mb-2 text-3xl font-bold md:text-5xl">
                 {{ event?.title }}
               </h1>
               <p class="text-lg md:text-xl">{{ event?.area }}</p>
@@ -63,6 +77,23 @@
 
           <!-- イベント情報 -->
           <div class="p-6 md:p-8">
+            <!-- 注意事項 -->
+            <div
+              class="mb-8 rounded-lg border border-yellow-200 bg-yellow-50 p-6"
+            >
+              <h3 class="mb-2 font-semibold text-yellow-800">情報に関する注意</h3>
+              <ul class="space-y-1 text-yellow-700">
+                <li>
+                  ・各よさこい祭りはAIによってデータを収集しているため、誤りがある可能性があります
+                </li>
+                <li>・最新情報は公式ホームページをご確認ください</li>
+                <li>・天候により開催内容が変更される場合があります</li>
+                <li>・会場内での撮影について制限がある場合があります</li>
+                <li>・ゴミは各自でお持ち帰りください</li>
+                <li>・熱中症対策を十分に行ってください</li>
+              </ul>
+            </div>
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
               <!-- 基本情報 -->
               <div>
@@ -91,9 +122,9 @@
                     <h3 class="font-semibold text-gray-700">開催地</h3>
                     <p class="text-gray-600">{{ event?.area }}</p>
                   </div>
-                  <div v-if="event?.teamCount">
+                  <div v-if="event?.teamCountText">
                     <h3 class="font-semibold text-gray-700">参加チーム数</h3>
-                    <p class="text-gray-600">約{{ event.teamCount }}チーム</p>
+                    <p class="text-gray-600">{{ event.teamCountText }}</p>
                   </div>
                 </div>
               </div>
@@ -110,36 +141,8 @@
                     <h3 class="font-semibold text-gray-700">駐車場</h3>
                     <p class="text-gray-600">{{ event.parking }}</p>
                   </div>
-                  <div v-if="event?.contact">
-                    <h3 class="font-semibold text-gray-700">お問い合わせ</h3>
-                    <p class="text-gray-600">
-                      {{ event.contact.organization }}
-                    </p>
-                    <p class="text-gray-600">
-                      <a
-                        :href="`tel:${event.contact.phoneNumber}`"
-                        class="text-blue-600 hover:text-blue-800"
-                      >
-                        TEL: {{ event.contact.phoneNumber }}
-                      </a>
-                    </p>
-                  </div>
                 </div>
               </div>
-            </div>
-
-            <!-- 注意事項 -->
-            <div
-              class="mt-8 bg-yellow-50 border border-yellow-200 rounded-lg p-6"
-            >
-              <h3 class="font-semibold text-yellow-800 mb-2">注意事項</h3>
-              <ul class="text-yellow-700 space-y-1">
-                <li>・最新情報は公式ホームページをご確認ください</li>
-                <li>・天候により開催内容が変更される場合があります</li>
-                <li>・会場内での撮影について制限がある場合があります</li>
-                <li>・ゴミは各自でお持ち帰りください</li>
-                <li>・熱中症対策を十分に行ってください</li>
-              </ul>
             </div>
 
             <!-- 詳細説明 -->
@@ -149,23 +152,17 @@
                 <p class="text-gray-700 leading-relaxed">
                   {{ event?.description }}
                 </p>
-                <p
-                  v-if="event?.additionalInfo"
-                  class="text-gray-700 leading-relaxed mt-4"
-                >
-                  {{ event.additionalInfo }}
-                </p>
               </div>
             </div>
 
             <!-- YouTube動画 -->
-            <div v-if="event?.youtubeVideoId" class="mt-8">
+            <div v-if="event?.youtubeVideoId || event?.youtubeUrl" class="mt-8">
               <h2 class="text-2xl font-bold mb-4">動画で見る</h2>
               <div class="bg-white rounded-lg shadow-lg overflow-hidden">
                 <div class="p-4 bg-gray-50 border-b">
                   <h3 class="font-semibold text-gray-700">{{ event?.title }}の様子</h3>
                 </div>
-                <div class="relative aspect-video">
+                <div v-if="event.youtubeVideoId" class="relative aspect-video">
                   <iframe
                     :src="`https://www.youtube.com/embed/${event.youtubeVideoId}`"
                     title="YouTube video player"
@@ -178,7 +175,7 @@
                 <div class="p-4 bg-gray-50 border-t">
                   <p class="text-sm text-gray-600">
                     <a
-                      :href="`https://www.youtube.com/watch?v=${event.youtubeVideoId}`"
+                      :href="event.youtubeUrl"
                       target="_blank"
                       rel="noopener noreferrer"
                       class="text-red-600 hover:text-red-800 underline"
@@ -191,7 +188,7 @@
             </div>
 
             <!-- Google MAP -->
-            <div v-if="event?.latitude && event?.longitude" class="mt-8">
+            <div v-if="event?.mapUrl" class="mt-8">
               <h2 class="text-2xl font-bold mb-4">会場マップ</h2>
               <div class="bg-white rounded-lg shadow-lg overflow-hidden">
                 <div class="p-4 bg-gray-50 border-b">
@@ -199,7 +196,10 @@
                     {{ event?.venue || "会場" }}
                   </h3>
                 </div>
-                <div class="h-96">
+                <div
+                  v-if="event.latitude !== undefined && event.longitude !== undefined"
+                  class="h-96"
+                >
                   <iframe
                     :src="`https://maps.google.com/maps?q=${event.latitude},${event.longitude}&hl=ja&z=15&output=embed`"
                     width="100%"
@@ -214,7 +214,7 @@
                 <div class="p-4 bg-gray-50 border-t">
                   <p class="text-sm text-gray-600">
                     <a
-                      :href="`https://www.google.com/maps/search/?api=1&query=${event.latitude},${event.longitude}`"
+                      :href="event.mapUrl"
                       target="_blank"
                       rel="noopener noreferrer"
                       class="text-blue-600 hover:text-blue-800 underline"
@@ -264,7 +264,10 @@ onMounted(async () => {
       error.value = "イベントが見つかりませんでした";
     }
   } catch (e) {
-    error.value = "イベントの取得に失敗しました";
+    error.value =
+      e instanceof Error && e.message === "DUPLICATE_EVENT_ID"
+        ? "同じ event_id のイベントが複数見つかりました。トップページから別のイベントをご確認ください。"
+        : "イベントの取得に失敗しました";
   } finally {
     isLoading.value = false;
   }

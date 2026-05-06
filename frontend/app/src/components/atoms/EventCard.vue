@@ -83,25 +83,28 @@
 
 <script setup lang="ts">
 const props = defineProps<{
+  id: string
   title: string
   area: string
   description: string
-  period?: string
+  period: string
 }>()
 
 const emit = defineEmits<{
   click: [
     event: {
+      id: string
       title: string
       area: string
       description: string
-      period?: string
+      period: string
     },
   ]
 }>()
 
 const handleClick = () => {
   emit('click', {
+    id: props.id,
     title: props.title,
     area: props.area,
     description: props.description,

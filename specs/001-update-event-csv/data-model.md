@@ -32,7 +32,7 @@
 | `latitude` | string | はい | 緯度の元データ |
 | `longitude` | string | はい | 経度の元データ |
 | `map_url` | string | はい | 地図遷移先 URL |
-| `updated_at` | string | はい | 元データ更新日 |
+| `updated_at` | string | はい | 元データ更新日。内部管理用 |
 
 ### バリデーションルール
 
@@ -75,6 +75,7 @@
 - `period` は `start_date` と `end_date` が同じ場合は単日表記、異なる場合は期間表記とする。
 - `mapUrl` は CSV 上の必須値をそのまま使う。
 - `youtubeVideoId` は、安全に埋め込み可能な URL と判定できたときだけ設定する。
+- `updatedAt` は内部管理用に保持し、利用者向け画面表示には使わない。
 
 ## エンティティ: EventListItem
 

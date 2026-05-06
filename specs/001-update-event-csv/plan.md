@@ -13,12 +13,6 @@
 
 ## 技術コンテキスト
 
-<!--
-  ACTION REQUIRED: Replace the content in this section with the technical details
-  for the project. The structure here is presented in advisory capacity to guide
-  the iteration process.
--->
-
 **言語/バージョン**: TypeScript + Nuxt 3.17  
 **主要依存関係**: Nuxt 3.17、Tailwind CSS 3.4、PapaParse 5.5  
 **データ保存**: `frontend/app/src/assets/data/` 配下の静的 CSV。クライアント側でメモリキャッシュを持つ  
