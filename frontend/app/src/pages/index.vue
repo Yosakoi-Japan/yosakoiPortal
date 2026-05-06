@@ -61,6 +61,7 @@
           <EventCard
             v-for="event in events"
             :key="event.id"
+            :id="event.id"
             :title="event.title"
             :area="event.area"
             :description="event.description"
@@ -88,16 +89,13 @@ const { events, fetchEvents } = useRemote();
 const route = useRoute();
 
 const handleEventClick = (event: {
+  id: string;
   title: string;
   area: string;
   description: string;
-  period?: string;
+  period: string;
 }) => {
-  // イベント一覧から該当するイベントを検索してIDを取得
-  const eventData = events.value.find((e) => e.title === event.title);
-  const eventId = eventData?.id || "unknown";
-
-  navigateTo(`/event/${eventId}`);
+  navigateTo(`/event/${event.id}`);
 };
 
 onMounted(() => {

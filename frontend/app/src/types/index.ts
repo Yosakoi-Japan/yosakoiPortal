@@ -1,32 +1,28 @@
-// TODO: 実際のデータは後ほど決定する（ここに記載なのは理想論）
-// 型定義ファイル
-// 一覧表示用のイベント型
 export type EventListItem = {
   id: string
   title: string
   area: string
   description: string
-  period?: string
+  period: string
 }
 
-// 詳細表示用のイベント型
 export type EventDetail = {
   id: string
   title: string
   area: string
   description: string
-  period?: string
-  teamCount?: number
+  period: string
+  startDate: string
+  endDate: string
+  teamCountText?: string
   nearestStation?: string
   parking?: string
-  contact?: {
-    organization: string
-    phoneNumber: string
-  }
-  additionalInfo?: string
-  officialWebsite?: string
+  officialWebsite: string
+  imageUrl?: string
+  youtubeUrl?: string
+  youtubeVideoId?: string
   latitude?: number
   longitude?: number
-  venue?: string
-  youtubeVideoId?: string
+  mapUrl?: string
+  venue: string
 }
