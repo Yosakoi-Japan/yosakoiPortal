@@ -244,34 +244,51 @@ import { SITE_NAME, SITE_URL, DEFAULT_DESCRIPTION } from "~/constants/seo";
 const route = useRoute();
 const { fetchEventById } = useRemote();
 
-// URLからイベントIDを取得
 const eventId = route.params.id as string;
-
-// イベントデータを取得
-const event = ref<EventDetail | null>(null);
-const isLoading = ref(true);
-const error = ref<string | null>(null);
-
-// APIからイベントデータを取得
-onMounted(async () => {
+const resolveEvent = async (): Promise<EventDetail> => {
   try {
-    isLoading.value = true;
     const eventData = await fetchEventById(eventId);
-
-    if (eventData) {
-      event.value = eventData;
-    } else {
-      error.value = "イベントが見つかりませんでした";
+    if (!eventData) {
+      throw createError({
+        statusCode: 404,
+        statusMessage: "イベントが見つかりませんでした",
+      });
     }
+    return eventData;
   } catch (e) {
-    error.value =
-      e instanceof Error && e.message === "DUPLICATE_EVENT_ID"
-        ? "同じ event_id のイベントが複数見つかりました。トップページから別のイベントをご確認ください。"
-        : "イベントの取得に失敗しました";
-  } finally {
-    isLoading.value = false;
+    if (e instanceof Error && e.message === "DUPLICATE_EVENT_ID") {
+      throw createError({
+        statusCode: 500,
+        statusMessage:
+          "同じ event_id のイベントが複数見つかりました。トップページから別のイベントをご確認ください。",
+      });
+    }
+    throw e;
   }
-});
+};
+
+const { data: event } = await useAsyncData(
+  `event-detail:${eventId}`,
+  resolveEvent,
+);
+
+const isLoading = computed(() => false);
+const error = computed(() => null);
+
+const formatEventDateTime = (date: string, isEnd = false) =>
+  `${date}T${isEnd ? "23:59:59" : "00:00:00"}+09:00`;
+
+const normalizeImageUrl = (imageUrl?: string) => {
+  if (!imageUrl) {
+    return `${SITE_URL}/naruko.png`;
+  }
+
+  if (/^https?:\/\//.test(imageUrl)) {
+    return imageUrl;
+  }
+
+  return `${SITE_URL}${imageUrl.startsWith("/") ? imageUrl : `/${imageUrl}`}`;
+};
 
 useHead(() => {
   const currentEvent = event.value;
@@ -281,6 +298,31 @@ useHead(() => {
   const description =
     currentEvent?.description?.slice(0, 120) || DEFAULT_DESCRIPTION;
   const url = `${SITE_URL}${route.path}`;
+  const structuredData = currentEvent
+    ? {
+        "@context": "https://schema.org",
+        "@type": "Event",
+        name: currentEvent.title,
+        startDate: formatEventDateTime(currentEvent.startDate),
+        endDate: formatEventDateTime(currentEvent.endDate, true),
+        eventStatus: "https://schema.org/EventScheduled",
+        eventAttendanceMode:
+          "https://schema.org/OfflineEventAttendanceMode",
+        location: {
+          "@type": "Place",
+          name: currentEvent.venue,
+          address: currentEvent.area,
+        },
+        description: currentEvent.description,
+        url,
+        image: [normalizeImageUrl(currentEvent.imageUrl)],
+        organizer: {
+          "@type": "Organization",
+          name: currentEvent.title,
+          url: currentEvent.officialWebsite,
+        },
+      }
+    : null;
 
   return {
     title: pageTitle,
@@ -295,6 +337,14 @@ useHead(() => {
       { name: "twitter:description", content: description },
     ],
     link: [{ rel: "canonical", href: url }],
+    script: structuredData
+      ? [
+          {
+            type: "application/ld+json",
+            children: JSON.stringify(structuredData),
+          },
+        ]
+      : [],
   };
 });
 </script>
