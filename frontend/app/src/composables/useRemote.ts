@@ -8,7 +8,6 @@ let duplicateIds: Set<string> | null = null;
 const FIELD_KEYS = {
   eventId: ["event_id"],
   eventName: ["event_name"],
-  status: ["status", "Status"],
   officialUrl: ["official_url"],
   startDate: ["start_date"],
   endDate: ["end_date"],
@@ -18,7 +17,6 @@ const FIELD_KEYS = {
   latitude: ["latitude"],
   longitude: ["longitude"],
   mapUrl: ["map_url"],
-  updatedAt: ["updated_at"],
   imageUrl: ["image_url"],
   teamCount: ["team_count"],
   nearestStation: ["nearest_station"],
@@ -28,13 +26,11 @@ const FIELD_KEYS = {
 const REQUIRED_FIELDS = [
   "eventId",
   "eventName",
-  "status",
   "officialUrl",
   "startDate",
   "endDate",
   "location",
   "description",
-  "updatedAt",
 ] as const;
 
 type CsvRow = Record<string, string>;
