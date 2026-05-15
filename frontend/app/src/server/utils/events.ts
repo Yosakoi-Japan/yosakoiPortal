@@ -1,5 +1,6 @@
 import { parse } from "csv-parse/sync";
 import { useStorage } from "nitropack/runtime";
+import { resolve } from "node:path";
 import type { EventDetail, EventListItem } from "~/types/index";
 
 let cachedEvents: EventDetail[] | null = null;
@@ -220,9 +221,17 @@ export const loadEventsFromCsv = async () => {
     return cachedEvents;
   }
 
-  const csvText = await useStorage("/assets/server").getItem<string>(
-    "data/yosakoi_event.csv",
-  );
+  const csvText = import.meta.dev
+    ? await import("node:fs/promises").then((fs) =>
+        fs.readFile(
+          resolve(process.cwd(), "src/assets/data/yosakoi_event.csv"),
+          "utf8",
+        )
+      )
+    : await useStorage().getItem<string>(
+        "/assets/server/data/yosakoi_event.csv",
+      );
+
   if (!csvText) {
     throw new Error("EVENT_CSV_NOT_FOUND");
   }
