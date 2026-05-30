@@ -1,5 +1,5 @@
-import Papa from "papaparse";
 import type { EventListItem, EventDetail } from "~/types/index";
+import { parseCsvRows, type CsvRow } from "~/utils/csv";
 
 let cachedEvents: EventDetail[] | null = null;
 let csvTextPromise: Promise<string> | null = null;
@@ -32,8 +32,6 @@ const REQUIRED_FIELDS = [
   "location",
   "description",
 ] as const;
-
-type CsvRow = Record<string, string>;
 
 const getTrimmed = (row: CsvRow, key: string) => (row[key] ?? "").trim();
 const getFieldValue = (
@@ -124,19 +122,13 @@ const loadCsvText = async (): Promise<string> => {
 };
 
 const parseCsvText = (csvText: string): EventDetail[] => {
-  const result = Papa.parse<CsvRow>(csvText, {
-    header: true,
-    skipEmptyLines: true,
-    transformHeader: (header) => header.replace(/^\ufeff/, "").trim(),
-    transform: (value) =>
-      typeof value === "string" ? value.trim() : value ?? "",
-  });
+  const result = parseCsvRows(csvText);
 
   if (result.errors.length) {
     console.warn("CSV parse errors detected:", result.errors);
   }
 
-  const sanitizedRows = result.data.filter((row) =>
+  const sanitizedRows = result.rows.filter((row) =>
     Object.values(row).some((value) => value && value.trim().length > 0),
   );
 

@@ -4,7 +4,10 @@
 .nuxt
 .nitro
 .cache
+.wrangler
 dist
+public
+mocks
 
 # Node dependencies
 node_modules

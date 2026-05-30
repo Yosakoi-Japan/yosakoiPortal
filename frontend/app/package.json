@@ -4,15 +4,16 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
+    "build:cloudflare": "nuxt build --preset=cloudflare_pages",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
+    "preview:cloudflare": "npx wrangler pages dev dist",
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
     "@nuxtjs/tailwindcss": "^6.13.2",
     "nuxt": "^3.17.5",
-    "papaparse": "^5.5.3",
     "vue": "^3.5.16",
     "vue-gtag-next": "^1.14.0",
     "vue-router": "^4.5.1"
@@ -23,8 +24,7 @@
   },
   "msw": {
     "workerDirectory": [
-      "mocks/public",
-      "public"
+      "src/public"
     ]
   }
 }
