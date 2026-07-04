@@ -2,13 +2,12 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
     {
+      "source": "/",
+      "destination": "https://yosakoi-portal.com/",
+      "statusCode": 301
+    },
+    {
       "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "yosakoi-portal.vercel.app"
-        }
-      ],
       "destination": "https://yosakoi-portal.com/:path*",
       "statusCode": 301
     }
