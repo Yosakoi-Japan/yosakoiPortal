@@ -6,7 +6,11 @@
 
       <section class="relative z-10 -mt-6 rounded-t-[2rem] bg-white px-4 pb-2 pt-6 sm:-mt-8 sm:rounded-t-[2.5rem] sm:pb-16 sm:pt-12">
         <div class="mx-auto max-w-6xl">
-          <div class="overflow-hidden rounded-[2rem] border border-rose-100 bg-gradient-to-br from-white via-rose-50/70 to-orange-50/60 shadow-[0_12px_32px_rgba(15,23,42,0.08)]">
+          <NuxtLink
+            to="/guide"
+            aria-label="よさこいの楽しみ方を見る"
+            class="group block cursor-pointer overflow-hidden rounded-[2rem] border border-rose-100 bg-gradient-to-br from-white via-rose-50/70 to-orange-50/60 shadow-[0_12px_32px_rgba(15,23,42,0.08)] transition duration-200 hover:-translate-y-1 hover:border-rose-200 hover:shadow-[0_16px_36px_rgba(225,29,72,0.14)] focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 focus-visible:ring-offset-4"
+          >
             <div class="grid grid-cols-[minmax(8rem,0.72fr)_minmax(0,1.28fr)] items-stretch md:grid-cols-[minmax(15rem,0.8fr)_minmax(0,1.2fr)]">
               <div class="relative bg-rose-50/40">
                 <img
@@ -33,18 +37,15 @@
                   </span>
                 </div>
 
-                <NuxtLink
-                  to="/guide"
-                  class="mt-4 inline-flex items-center rounded-full bg-gradient-to-r from-red-500 to-pink-500 px-4 py-2 text-sm font-bold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:from-red-600 hover:to-pink-600 hover:shadow-xl sm:mt-7 sm:px-8 sm:py-3 sm:text-lg"
-                >
-                  楽しみ方を知る
-                  <svg class="ml-2 h-4 w-4 sm:ml-3 sm:h-5 sm:w-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
+                <span class="mt-4 inline-flex items-center text-sm font-bold text-rose-600 sm:mt-7 sm:text-lg">
+                  楽しみ方を見る
+                  <svg class="ml-2 h-4 w-4 transition-transform duration-200 group-hover:translate-x-1 sm:ml-3 sm:h-5 sm:w-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m9 18 6-6-6-6" />
                   </svg>
-                </NuxtLink>
+                </span>
               </div>
             </div>
-          </div>
+          </NuxtLink>
         </div>
       </section>
     </div>
