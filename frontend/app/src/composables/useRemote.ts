@@ -246,6 +246,8 @@ export function useRemote() {
         area: detail.area,
         description: detail.description,
         period: detail.period,
+        startDate: detail.startDate,
+        endDate: detail.endDate,
       }));
     } catch (e) {
       console.error("Failed to load events from CSV:", e);

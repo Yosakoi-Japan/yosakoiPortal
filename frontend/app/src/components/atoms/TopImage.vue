@@ -1,12 +1,12 @@
 <template>
-  <section class="relative w-full h-64 md:h-[500px] overflow-hidden">
+  <section class="relative h-48 w-full shrink-0 overflow-hidden sm:h-64 md:h-[360px]">
     <img :src="imageUrl" :alt="altText" class="w-full h-full object-cover" />
     <div
       class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center"
     >
       <div class="text-center text-white">
-        <h1 class="text-4xl md:text-6xl font-bold mb-4">{{ title }}</h1>
-        <p class="text-lg md:text-xl">{{ subtitle }}</p>
+        <h1 class="mb-2 whitespace-nowrap text-[clamp(1.25rem,7vw,3.75rem)] font-bold leading-none md:mb-4">{{ title }}</h1>
+        <p class="whitespace-nowrap text-[clamp(0.75rem,4.5vw,1.25rem)] leading-none">{{ subtitle }}</p>
       </div>
     </div>
   </section>
