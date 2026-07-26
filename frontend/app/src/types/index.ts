@@ -4,6 +4,8 @@ export type EventListItem = {
   area: string
   description: string
   period: string
+  startDate: string
+  endDate: string
 }
 
 export type EventDetail = {
