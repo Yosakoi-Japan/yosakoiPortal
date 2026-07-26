@@ -1,6 +1,9 @@
 <template>
   <section class="relative h-48 w-full shrink-0 overflow-hidden sm:h-64 md:h-[360px]">
-    <img :src="imageUrl" :alt="altText" class="w-full h-full object-cover" />
+    <picture class="block w-full h-full">
+      <source media="(min-width: 768px)" :srcset="desktopImageUrl" />
+      <img :src="imageUrl" :alt="altText" class="w-full h-full object-cover" />
+    </picture>
     <div
       class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center"
     >
@@ -15,6 +18,7 @@
 <script setup lang="ts">
 interface Props {
   imageUrl?: string;
+  desktopImageUrl?: string;
   altText?: string;
   title?: string;
   subtitle?: string;
@@ -22,6 +26,7 @@ interface Props {
 
 withDefaults(defineProps<Props>(), {
   imageUrl: "/top_image.png",
+  desktopImageUrl: "/top_image_desktop.png",
   altText: "よさこい祭りの様子",
   title: "熱く踊れ、日本を彩れ。",
   subtitle: "全国のよさこい祭り情報をお届けします",
