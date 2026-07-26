@@ -72,7 +72,7 @@
             :aria-selected="selectedPeriod === tab.value"
             class="min-w-24 rounded-full border px-5 py-2.5 text-base font-bold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 sm:min-w-32 sm:text-lg"
             :class="selectedPeriod === tab.value ? 'border-red-500 bg-gradient-to-r from-red-500 to-rose-500 text-white shadow-md' : 'border-slate-200 bg-white text-slate-600 hover:border-red-300 hover:text-red-600'"
-            @click="selectedPeriod = tab.value"
+            @click="setSelectedPeriod(tab.value)"
           >
             {{ tab.label }}
           </button>
@@ -122,22 +122,22 @@ import EventCard from "~/components/atoms/EventCard.vue";
 import TopImage from "~/components/atoms/TopImage.vue";
 import Footer from "~/components/utils/Footer.vue";
 import Header from "~/components/utils/Header.vue";
+import { useEventPeriodFilter } from "~/composables/useEventPeriodFilter";
 import { useRemote } from "~/composables/useRemote";
 import { SITE_NAME, SITE_URL } from "~/constants/seo";
 import {
   filterEventsByPeriod,
   getTokyoDateIso,
-  type EventPeriod,
 } from "~/utils/eventDisplay";
 
-const eventTabs: { label: string; value: EventPeriod }[] = [
+const eventTabs = [
   { label: "今月", value: "this-month" },
   { label: "来月", value: "next-month" },
-];
+] as const;
 
 const { events, fetchEvents } = useRemote();
 const route = useRoute();
-const selectedPeriod = ref<EventPeriod>("this-month");
+const { selectedPeriod, setSelectedPeriod } = useEventPeriodFilter();
 const today = ref(getTokyoDateIso());
 const isLoading = ref(true);
 const filteredEvents = computed(() =>
