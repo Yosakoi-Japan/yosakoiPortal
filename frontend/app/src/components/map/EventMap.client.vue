@@ -8,6 +8,7 @@ import type {
   Marker as MapLibreMarker,
 } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
+import mapLibreWorkerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url";
 import type { EventListItem, MapPlace } from "~/types";
 
 type EventFeatureProperties = {
@@ -377,7 +378,10 @@ const initializeMap = async () => {
   mapError.value = false;
 
   try {
-    const { Map, GeolocateControl, Marker } = await import("maplibre-gl");
+    const { Map, GeolocateControl, Marker, setWorkerUrl } = await import(
+      "maplibre-gl"
+    );
+    setWorkerUrl(mapLibreWorkerUrl);
     MarkerConstructor = Marker;
 
     if (!mapContainer.value) {
