@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-gray-50">
+  <div class="min-h-screen bg-gray-50 pb-[calc(4.5rem+env(safe-area-inset-bottom))] md:pb-0">
     <Header />
     <div class="bg-white">
       <TopImage />
@@ -114,12 +114,14 @@
     </main>
 
     <Footer />
+    <BottomNavigation />
   </div>
 </template>
 
 <script setup lang="ts">
 import EventCard from "~/components/atoms/EventCard.vue";
 import TopImage from "~/components/atoms/TopImage.vue";
+import BottomNavigation from "~/components/utils/BottomNavigation.vue";
 import Footer from "~/components/utils/Footer.vue";
 import Header from "~/components/utils/Header.vue";
 import { useEventPeriodFilter } from "~/composables/useEventPeriodFilter";
