@@ -97,7 +97,7 @@ useHead(() => {
   const url = `${SITE_URL}${route.path}`;
   const pageTitle = "地図からよさこいを探す";
   const description =
-    "地図から全国のよさこいイベントを探せます。開催地を選んで日程や詳細情報を確認できます。";
+        "地図から全国のよさこいイベントを探せます。開催地を選んで日程や詳細情報を確認できます。";
 
   return {
     title: pageTitle,
