@@ -6,6 +6,14 @@ export type EventListItem = {
   period: string
   startDate: string
   endDate: string
+  latitude?: number
+  longitude?: number
+}
+
+export type MapPlace = {
+  name: string
+  latitude: number
+  longitude: number
 }
 
 export type EventDetail = {

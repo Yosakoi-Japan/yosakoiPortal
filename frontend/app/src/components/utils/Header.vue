@@ -10,6 +10,7 @@ type MenuItem = {
 
 const menuItems: MenuItem[] = [
   { label: "ホーム", to: "/" },
+  { label: "地図から探す", to: "/map" },
   { label: "楽しみ方", to: "/guide" },
   { label: "お問い合わせ", to: "/contact" },
   { label: "掲載依頼", to: "/submit" },

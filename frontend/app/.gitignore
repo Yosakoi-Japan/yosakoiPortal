@@ -7,6 +7,8 @@
 .wrangler
 dist
 public
+!src/public/
+!src/public/about_yosakoi.png
 mocks
 
 # Node dependencies

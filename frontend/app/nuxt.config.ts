@@ -13,6 +13,14 @@ export default defineNuxtConfig({
   components: true,
   css: ["~/assets/css/main.css"],
   modules: ["@nuxtjs/tailwindcss"],
+  vite: {
+    optimizeDeps: {
+      exclude: ["maplibre-gl"],
+    },
+    ssr: {
+      noExternal: ["maplibre-gl"],
+    },
+  },
   runtimeConfig: {
     public: {
       gtagId: process.env.GA_MEASUREMENT_ID,

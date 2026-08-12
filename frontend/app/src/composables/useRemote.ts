@@ -66,13 +66,15 @@ const compareEventsByDate = (a: EventDetail, b: EventDetail) => {
   return a.title.localeCompare(b.title, "ja");
 };
 
-const parseCoordinate = (value: string) => {
+const parseCoordinate = (value: string, min: number, max: number) => {
   const trimmed = value.trim();
   if (!trimmed) {
     return undefined;
   }
   const parsed = Number.parseFloat(trimmed);
-  return Number.isNaN(parsed) ? undefined : parsed;
+  return Number.isFinite(parsed) && parsed >= min && parsed <= max
+    ? parsed
+    : undefined;
 };
 
 const extractYoutubeId = (value: string) => {
@@ -157,8 +159,16 @@ const parseCsvText = (csvText: string): EventDetail[] => {
 
     const startDate = getFieldValue(row, "startDate");
     const endDate = getFieldValue(row, "endDate");
-    const latitude = parseCoordinate(getFieldValue(row, "latitude"));
-    const longitude = parseCoordinate(getFieldValue(row, "longitude"));
+    const latitude = parseCoordinate(
+      getFieldValue(row, "latitude"),
+      -90,
+      90,
+    );
+    const longitude = parseCoordinate(
+      getFieldValue(row, "longitude"),
+      -180,
+      180,
+    );
 
     if (!isValidDate(startDate) || !isValidDate(endDate)) {
       return [];
@@ -240,15 +250,27 @@ export function useRemote() {
   const fetchEvents = async () => {
     try {
       const csvEvents = await loadEventsFromCsv();
-      events.value = csvEvents.map((detail) => ({
-        id: detail.id,
-        title: detail.title,
-        area: detail.area,
-        description: detail.description,
-        period: detail.period,
-        startDate: detail.startDate,
-        endDate: detail.endDate,
-      }));
+      events.value = csvEvents.map((detail) => {
+        const event: EventListItem = {
+          id: detail.id,
+          title: detail.title,
+          area: detail.area,
+          description: detail.description,
+          period: detail.period,
+          startDate: detail.startDate,
+          endDate: detail.endDate,
+        };
+
+        if (detail.latitude !== undefined) {
+          event.latitude = detail.latitude;
+        }
+
+        if (detail.longitude !== undefined) {
+          event.longitude = detail.longitude;
+        }
+
+        return event;
+      });
     } catch (e) {
       console.error("Failed to load events from CSV:", e);
       events.value = [];
