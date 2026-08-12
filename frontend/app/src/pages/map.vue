@@ -143,7 +143,7 @@ useHead(() => {
         <div class="max-w-sm rounded-3xl bg-white p-7 text-center shadow-xl ring-1 ring-orange-100">
           <p class="text-xl font-black text-slate-950">地図に表示できるイベントがありません</p>
           <p class="mt-2 text-sm leading-relaxed text-slate-600">
-            現在、開催予定と位置情報の両方が登録されたイベントはありません。
+            現在、地図に表示できるお祭り情報はありません。
           </p>
           <NuxtLink
             to="/events"
