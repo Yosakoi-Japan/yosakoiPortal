@@ -53,17 +53,6 @@ const thumbnailUrl = computed(() =>
         </div>
       </div>
 
-      <div class="flex items-center justify-between gap-3 px-4 py-3 text-sm font-black text-slate-900 sm:px-5 sm:text-base">
-        <span class="inline-flex items-center gap-2">
-          <svg class="h-6 w-6 text-red-600" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4L15.8 12l-6.2 3.6Z" />
-          </svg>
-          ページ内で再生
-        </span>
-        <svg class="h-5 w-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" d="m9 18 6-6-6-6" />
-        </svg>
-      </div>
     </template>
 
     <template v-else>
