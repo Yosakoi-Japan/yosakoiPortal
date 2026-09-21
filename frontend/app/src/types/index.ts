@@ -36,3 +36,17 @@ export type EventDetail = {
   mapUrl?: string
   venue: string
 }
+
+export type AwardWinnerVideo = {
+  id: string
+  eventId: string
+  eventName: string
+  awardName: string
+  teamName: string
+  resultSourceUrl: string
+  videoUrl: string
+  videoSourceType: string
+  youtubeVideoId: string
+  publishedAt: string
+  expiresAt: string
+}

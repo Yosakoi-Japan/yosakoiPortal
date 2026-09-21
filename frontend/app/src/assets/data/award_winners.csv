@@ -1,2 +1,6 @@
 event_id,award_name,team_name,result_source_url,video_url,video_source_type,status,updated_at
-nippon_domatsuri_2026,どまつり大賞,夜宵,https://x.com/domatsuri/status/2094028086161588298?s=20,https://youtu.be/urjiJQ78q7M?si=9RdoRQfT397eHnNL,OrganizerOfficial,Approved,2026-09-10T10:30:00+09:00
+nippon_domatsuri_2026,どまつり大賞,夜宵,https://x.com/domatsuri/status/2094028086161588298?s=20,https://youtu.be/urjiJQ78q7M?si=9RdoRQfT397eHnNL,OrganizerOfficial,Approved,2026-09-18T00:07:29+09:00
+inuyama_tougeisai_2026,大賞,鳴子連・暁,https://example.com/award/inuyama,https://youtu.be/FIV7ooM4CtM,OrganizerOfficial,Approved,2026-09-18T00:06:00+09:00
+yosakoi_kasuya_2026,準大賞,華舞衆,https://example.com/award/kasuya,https://youtu.be/7VPww8d9Ltc,OrganizerOfficial,Approved,2026-09-18T00:05:00+09:00
+sagamihara_yosakoi_ranbu_2026,優秀賞,相模よさこい隊,https://example.com/award/sagamihara,https://www.youtube.com/watch?v=fRSISpy2HPY,OrganizerOfficial,Approved,2026-09-18T00:04:00+09:00
+toyama_yosakoi_matsuri_2026,審査員特別賞,越中舞人,https://example.com/award/toyama,https://www.youtube.com/watch?v=1XrLjxU3UdA,OrganizerOfficial,Approved,2026-09-18T00:03:00+09:00
