@@ -2,75 +2,53 @@
   <div class="min-h-screen bg-gray-50 pb-[calc(4.5rem+env(safe-area-inset-bottom))] md:pb-0">
     <Header />
     <div class="bg-white">
-      <TopImage />
+      <div class="relative bg-white pb-12">
+        <TopImage />
 
-      <section class="relative z-10 -mt-6 rounded-t-[2rem] bg-white px-4 pb-2 pt-6 sm:-mt-8 sm:rounded-t-[2.5rem] sm:pb-16 sm:pt-12">
-        <div class="mx-auto max-w-6xl">
-          <NuxtLink
-            to="/guide"
-            aria-label="よさこいの楽しみ方を見る"
-            class="group block cursor-pointer overflow-hidden rounded-[2rem] border border-rose-100 bg-gradient-to-br from-white via-rose-50/70 to-orange-50/60 shadow-[0_12px_32px_rgba(15,23,42,0.08)] transition duration-200 hover:-translate-y-1 hover:border-rose-200 hover:shadow-[0_16px_36px_rgba(225,29,72,0.14)] focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 focus-visible:ring-offset-4"
-          >
-            <div class="grid grid-cols-[minmax(8rem,0.72fr)_minmax(0,1.28fr)] items-stretch md:grid-cols-[minmax(15rem,0.8fr)_minmax(0,1.2fr)]">
-              <div class="relative bg-rose-50/40">
-                <img
-                  src="/about_yosakoi.png"
-                  alt="鳴子を手に踊るよさこいの踊り手のイラスト"
-                  class="absolute inset-0 h-full w-full object-contain p-1 sm:p-4"
-                />
-              </div>
+        <NuxtLink
+          to="/guide"
+          aria-label="はじめてでも楽しめる よさこいガイド！"
+          class="group absolute inset-x-0 bottom-0 z-20 flex items-center border-y border-amber-200 bg-white px-5 py-3 text-slate-950 shadow-[0_10px_26px_rgba(15,23,42,0.12)] transition hover:bg-amber-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-amber-400 sm:px-10 sm:py-5"
+        >
+          <span class="mr-3 text-xl sm:mr-5 sm:text-3xl" aria-hidden="true">🔰</span>
+          <span class="min-w-0 flex-1 text-sm font-bold sm:text-2xl">
+            はじめてでも楽しめる&nbsp; よさこいガイド！
+          </span>
+          <svg class="ml-3 h-5 w-5 shrink-0 transition-transform duration-200 group-hover:translate-x-1 sm:h-6 sm:w-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m9 18 6-6-6-6" />
+          </svg>
+        </NuxtLink>
+      </div>
 
-              <div class="px-4 py-5 sm:px-10 sm:py-10 md:px-8 lg:px-12">
-                <h2 class="text-xl font-black tracking-tight text-slate-950 sm:text-3xl">
-                  よさこいって何？
-                </h2>
-                <p class="mt-2 text-sm leading-relaxed text-slate-600 sm:mt-3 sm:text-lg">
-                  踊り・音楽・地域の熱気を楽しむお祭りです
-                </p>
-
-                <div class="mt-3 flex flex-nowrap gap-1 sm:mt-5 sm:flex-wrap sm:gap-3">
-                  <span class="inline-flex shrink-0 items-center whitespace-nowrap rounded-full bg-rose-100 px-1.5 py-1 text-[11px] font-bold text-rose-600 sm:px-4 sm:py-2 sm:text-base">
-                    <span class="mr-1 sm:mr-2" aria-hidden="true">🔰</span>初心者向け
-                  </span>
-                  <span class="inline-flex shrink-0 items-center whitespace-nowrap rounded-full bg-amber-100 px-1.5 py-1 text-[11px] font-bold text-amber-700 sm:px-4 sm:py-2 sm:text-base">
-                    <span class="mr-1 sm:mr-2" aria-hidden="true">🌍</span>全国で開催
-                  </span>
-                </div>
-
-                <span class="mt-4 inline-flex items-center text-sm font-bold text-rose-600 sm:mt-7 sm:text-lg">
-                  楽しみ方を見る
-                  <svg class="ml-2 h-4 w-4 transition-transform duration-200 group-hover:translate-x-1 sm:ml-3 sm:h-5 sm:w-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="m9 18 6-6-6-6" />
-                  </svg>
-                </span>
-              </div>
-            </div>
-          </NuxtLink>
-        </div>
-      </section>
+      <div class="relative z-10 bg-white pb-2 sm:-mt-8 sm:rounded-t-[2.5rem] sm:pb-0 sm:pt-12">
+        <WinnerVideoSection
+          v-if="awardWinnerVideos.length"
+          :videos="awardWinnerVideos"
+        />
+      </div>
     </div>
 
-    <main class="bg-white pb-12 pt-2 sm:py-16">
+    <main class="bg-white pb-12 pt-2 sm:pb-16 sm:pt-8">
       <section class="mx-auto max-w-5xl px-4 sm:px-6">
-        <div class="flex items-start gap-4">
-          <svg class="mt-1 h-11 w-11 shrink-0 text-red-500 sm:h-12 sm:w-12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
+        <div class="flex items-start gap-3 sm:gap-4">
+          <svg class="mt-0.5 h-9 w-9 shrink-0 text-red-500 sm:mt-1 sm:h-12 sm:w-12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
             <rect x="3" y="5" width="18" height="16" rx="2" />
             <path stroke-linecap="round" d="M8 3v4m8-4v4M7 11h.01M12 11h.01M17 11h.01M7 16h.01M12 16h.01M17 16h.01" />
           </svg>
           <div>
-            <h1 class="text-2xl font-black tracking-tight text-slate-950 sm:text-3xl">近日開催のよさこい</h1>
-            <p class="mt-2 text-base text-slate-600 sm:text-lg">近いうちに開催されるイベントをチェック</p>
+            <h1 class="text-xl font-black tracking-tight text-slate-950 sm:text-3xl">近日開催のよさこい</h1>
+            <p class="mt-1 text-sm text-slate-600 sm:mt-2 sm:text-lg">近いうちに開催されるイベントをチェック</p>
           </div>
         </div>
 
-        <div class="mt-5 flex gap-3 sm:mt-8" role="tablist" aria-label="開催期間で絞り込む">
+        <div class="mt-3 flex gap-2 sm:mt-8 sm:gap-3" role="tablist" aria-label="開催期間で絞り込む">
           <button
             v-for="tab in eventTabs"
             :key="tab.value"
             type="button"
             role="tab"
             :aria-selected="selectedPeriod === tab.value"
-            class="min-w-24 rounded-full border px-5 py-2.5 text-base font-bold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 sm:min-w-32 sm:text-lg"
+            class="min-w-20 rounded-full border px-4 py-2 text-sm font-bold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 sm:min-w-32 sm:px-5 sm:py-2.5 sm:text-lg"
             :class="selectedPeriod === tab.value ? 'border-red-500 bg-gradient-to-r from-red-500 to-rose-500 text-white shadow-md' : 'border-slate-200 bg-white text-slate-600 hover:border-red-300 hover:text-red-600'"
             @click="setSelectedPeriod(tab.value)"
           >
@@ -78,7 +56,7 @@
           </button>
         </div>
 
-        <div class="mt-5 space-y-6 sm:mt-8">
+        <div class="mt-4 space-y-6 sm:mt-8">
           <div v-if="isLoading" class="rounded-3xl border border-slate-100 bg-slate-50 px-6 py-12 text-center text-slate-600">
             開催予定を読み込み中です…
           </div>
@@ -121,9 +99,11 @@
 <script setup lang="ts">
 import EventCard from "~/components/atoms/EventCard.vue";
 import TopImage from "~/components/atoms/TopImage.vue";
+import WinnerVideoSection from "~/components/award-winners/WinnerVideoSection.vue";
 import BottomNavigation from "~/components/utils/BottomNavigation.vue";
 import Footer from "~/components/utils/Footer.vue";
 import Header from "~/components/utils/Header.vue";
+import { useAwardWinners } from "~/composables/useAwardWinners";
 import { useEventPeriodFilter } from "~/composables/useEventPeriodFilter";
 import { useRemote } from "~/composables/useRemote";
 import { SITE_NAME, SITE_URL } from "~/constants/seo";
@@ -138,6 +118,7 @@ const eventTabs = [
 ] as const;
 
 const { events, fetchEvents } = useRemote();
+const { awardWinnerVideos, fetchAwardWinnerVideos } = useAwardWinners();
 const route = useRoute();
 const { selectedPeriod, setSelectedPeriod } = useEventPeriodFilter();
 const today = ref(getTokyoDateIso());
@@ -148,7 +129,7 @@ const filteredEvents = computed(() =>
 
 onMounted(async () => {
   today.value = getTokyoDateIso();
-  await fetchEvents();
+  await Promise.all([fetchEvents(), fetchAwardWinnerVideos()]);
   isLoading.value = false;
 });
 

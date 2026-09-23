@@ -1,5 +1,6 @@
 import type { EventListItem, EventDetail } from "~/types/index";
 import { parseCsvRows, type CsvRow } from "~/utils/csv";
+import { extractYoutubeVideoId } from "~/utils/youtube";
 
 let cachedEvents: EventDetail[] | null = null;
 let csvTextPromise: Promise<string> | null = null;
@@ -77,38 +78,6 @@ const parseCoordinate = (value: string, min: number, max: number) => {
     : undefined;
 };
 
-const extractYoutubeId = (value: string) => {
-  const trimmed = value.trim();
-  if (!trimmed) {
-    return undefined;
-  }
-
-  if (/^[\w-]{11}$/.test(trimmed)) {
-    return trimmed;
-  }
-
-  try {
-    const url = new URL(trimmed);
-    if (url.hostname === "youtu.be") {
-      return url.pathname.replace("/", "") || undefined;
-    }
-
-    if (url.hostname.includes("youtube.com")) {
-      const paramId = url.searchParams.get("v");
-      if (paramId) {
-        return paramId;
-      }
-      if (url.pathname.startsWith("/embed/")) {
-        return url.pathname.replace("/embed/", "") || undefined;
-      }
-    }
-  } catch (e) {
-    return undefined;
-  }
-
-  return undefined;
-};
-
 const loadCsvText = async (): Promise<string> => {
   if (!csvTextPromise) {
     csvTextPromise = import("~/assets/data/yosakoi_event.csv?raw").then(
@@ -175,7 +144,7 @@ const parseCsvText = (csvText: string): EventDetail[] => {
     }
 
     const youtubeUrl = getFieldValue(row, "youtubeUrl");
-    const youtubeVideoId = extractYoutubeId(youtubeUrl);
+    const youtubeVideoId = extractYoutubeVideoId(youtubeUrl);
     const mapUrl = getFieldValue(row, "mapUrl");
 
     const eventDetail: EventDetail = {
